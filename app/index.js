@@ -19,7 +19,7 @@ const pushProperty = (array, ...newElement) => {
 
 const popProperty = (array) => {
   const poppedElement = array[lengthProperty(array) - 1];
-  array = array.length -= 1;
+  array.length -= 1;
 
   return poppedElement;
 };
@@ -75,7 +75,8 @@ const everyProperty = (array, comparator) => {
   }
   for (let i = 0; i < lengthProperty(array); i++) {
     if (array[i] !== comparator) {
-      return true;
+      // si "hola" no tiene una lonjitud mayor o igual a 3
+      return false;
     }
   }
   return true;
