@@ -22,6 +22,17 @@ describe("Given a length function", () => {
       expect(expectedResult).toBe(result);
     });
   });
+
+  describe("When it receives the array [undefined]", () => {
+    test("Then it should return 1", () => {
+      const randomWords = [undefined];
+      const result = 1;
+
+      const expectedResult = based.lengthProperty(randomWords);
+
+      expect(expectedResult).toBe(result);
+    });
+  });
 });
 
 describe("Given a push function", () => {
@@ -91,10 +102,10 @@ describe("Given a some function", () => {
   describe("When it receives randomWords array, and the parameter of 'barco'", () => {
     test("Then it should return true", () => {
       const randomWords = ["hola", "adios", "avion", "casa", "coche"];
-      const thisParameter = "casa";
+      const parameter = (element) => element === "casa";
       const result = true;
 
-      const expectedResult = based.someProperty(randomWords, thisParameter);
+      const expectedResult = based.someProperty(randomWords, parameter);
 
       expect(expectedResult).toBe(result);
     });
@@ -103,7 +114,7 @@ describe("Given a some function", () => {
   describe("When it receives randomWords array, and the parameter of length >= 3", () => {
     test("Then it should return true", () => {
       const randomWords = ["hola", "adios", "avion", "casa", "coche"];
-      const parameter = (currentValue) => currentValue.length() >= 3;
+      const parameter = (element) => element.length >= 3;
       const result = true;
 
       const expectedResult = based.someProperty(randomWords, parameter);
@@ -206,10 +217,10 @@ describe("Given an every function", () => {
   describe(`When it receives randomWords array, and a parameter of length > 3`, () => {
     test("Then it should return true", () => {
       const randomWords = ["hola", "adios", "avion", "casa", "coche"];
-      const thisArg = (randomWords) => randomWords[i].length() >= 3;
+      const parameter = (element) => element.length >= 3;
       const result = true;
 
-      const expectedResult = based.everyProperty(randomWords, thisArg);
+      const expectedResult = based.everyProperty(randomWords, parameter);
 
       expect(expectedResult).toBe(result);
     });
@@ -218,10 +229,10 @@ describe("Given an every function", () => {
   describe(`When it receives an empty array, and a parameter of length > 3`, () => {
     test("Then it should return true", () => {
       const randomWords = [];
-      const comparator = (currentValue) => currentValue.length() >= 3;
+      const parameter = (element) => element.length >= 3;
       const result = true;
 
-      const expectedResult = based.everyProperty(randomWords, comparator);
+      const expectedResult = based.everyProperty(randomWords, parameter);
 
       expect(expectedResult).toBe(result);
     });
@@ -230,10 +241,10 @@ describe("Given an every function", () => {
   describe(`When it receives randomWords array, and a parameter of length < 2`, () => {
     test("Then it should return false", () => {
       const randomWords = ["hola", "adios", "avion", "casa", "coche"];
-      const comparator = (element) => element[index].length() <= 2;
+      const parameter = (element) => element.length <= 2;
       const result = false;
 
-      const expectedResult = based.everyProperty(randomWords, comparator);
+      const expectedResult = based.everyProperty(randomWords, parameter);
 
       expect(expectedResult).toBe(result);
     });
