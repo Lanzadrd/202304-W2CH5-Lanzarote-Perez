@@ -24,9 +24,10 @@ const popProperty = (array) => {
   return poppedElement;
 };
 
-const someProperty = (array, parameter) => {
+const someProperty = (array, callBack) => {
   for (let i = 0; i < lengthProperty(array); i++) {
-    if (array[i] === parameter) {
+    let element = array[i];
+    if (callBack(element) === true) {
       return true;
     }
   }
@@ -69,13 +70,13 @@ const unshiftProperty = (array, ...element) => {
   return lengthProperty(array);
 };
 
-const everyProperty = (array, comparator) => {
+const everyProperty = (array, parameter) => {
   if (lengthProperty(array) === 0) {
     return true;
   }
   for (let i = 0; i < lengthProperty(array); i++) {
-    if (array[i] !== comparator) {
-      // si "hola" no tiene una lonjitud mayor o igual a 3
+    let element = array[i];
+    if (parameter(element) === false) {
       return false;
     }
   }
